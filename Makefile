@@ -1,11 +1,11 @@
-SRC = main.c 
-OBJ = main.o 
+SRC = main.c utils.c show_symbol.c
+OBJ = main.o utils.o show_symbol.o
 
 NAME = nm
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I.
 
 all: $(NAME)
 
