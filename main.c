@@ -4,32 +4,37 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#define FUCKED_UP_FD -1
-#define FUCKED_UP_FSTAT 0
+#define FD_ERROR -1
 
-#define HELP_HOUSTON_WE_HAVE_PROBLEM 0
-
-typedef struct stat flemme_decrire_deux_mot;
+#define ERROR 0
 
 void	*load_file(char *path)
 {
 	int fd = open(path, O_RDONLY);
 
-	if (fd == FUCKED_UP_FD)
-		return (HELP_HOUSTON_WE_HAVE_PROBLEM);
+	if (fd == FD_ERROR)
+		return (ERROR);
 
-	flemme_decrire_deux_mot ouiiiiiiiiii;
+	struct stat file_stat;
 
-	if (fstat(fd, &ouiiiiiiiiii) < FUCKED_UP_FSTAT)
-		return (HELP_HOUSTON_WE_HAVE_PROBLEM);
+	if (fstat(fd, &file_stat) < 0)
+		return (ERROR);
 
-	void *suffering = mmap(NULL, ouiiiiiiiiii.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+	void *suffering = mmap(NULL, file_stat.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+
 	close(fd);
-	write(1, suffering, ouiiiiiiiiii.st_size);
+
 	return (suffering);
 }
 
 int main(int argc, char **argv)
 {
-	char *suffering = load_file(argv[1]);
+	char	*file_data;
+
+	if (argc == 1)
+		file_data = load_file("./a.out");
+	else
+		file_data = load_file(argv[1]);
+	if (file_data == ERROR)
+		return (write(1, "cant open or map the file\n", 27) ,1);
 }
