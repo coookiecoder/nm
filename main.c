@@ -6,7 +6,7 @@
 /*   By: abareux <abareux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 13:41:27 by abareux           #+#    #+#             */
-/*   Updated: 2024/02/22 14:32:06 by abareux          ###   ########.fr       */
+/*   Updated: 2024/02/24 09:58:14 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int main(int argc, char **argv)
 	char				*file_data;
 	unsigned long long	file_size;
 	int					cursor = 0;
+	unsigned char		return_value = 0;
 
 	if (argc == 1)
 	{
@@ -79,22 +80,32 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	
-	while (cursor < argc)
+	while (cursor < argc - 1)
 	{
-		file_data = load_file(argv[cursor], &file_size);
+		file_data = load_file(argv[cursor + 1], &file_size);
 	
 		if (file_data == ERROR)
-			return (not_found(argv[cursor]));
+			return_value = not_found(argv[cursor + 1]);
 
-		if (!identify(file_data))
-			return (not_recognized(argv[cursor]));
+		else if (file_data && !identify(file_data))
+			return_value = not_recognized(argv[cursor + 1]);
 
-		show_symbol(file_data);
+		else if (file_data)
+		{
+			if (argc > 2)
+			{
+				write(1, "\n", 1);
+				write(1, argv[cursor + 1], ft_strlen(argv[cursor + 1]));
+				write(1, ":\n", 2);
+			}
 
-		munmap(file_data, file_size);
+			show_symbol(file_data);
+
+			munmap(file_data, file_size);
+		}
 
 		cursor++;
 	}
 
-	return (0);
+	return (return_value);
 }

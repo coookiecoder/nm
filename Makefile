@@ -5,7 +5,7 @@ NAME = nm
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror -I. -g3
 
 all: $(NAME)
 
