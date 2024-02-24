@@ -1,5 +1,5 @@
-SRC = main.c utils.c show_symbol.c
-OBJ = main.o utils.o show_symbol.o
+SRC = main.c utils.c show_symbol.c puttype.c
+OBJ = main.o utils.o show_symbol.o puttype.o
 
 NAME = nm
 

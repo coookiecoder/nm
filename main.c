@@ -6,7 +6,7 @@
 /*   By: abareux <abareux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 13:41:27 by abareux           #+#    #+#             */
-/*   Updated: 2024/02/24 09:58:14 by abareux          ###   ########.fr       */
+/*   Updated: 2024/02/24 15:55:06 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ int main(int argc, char **argv)
 				write(1, ":\n", 2);
 			}
 
-			show_symbol(file_data);
+			if (show_symbol(file_data) == 1)
+				no_symbol(argv[cursor + 1]);
 
 			munmap(file_data, file_size);
 		}
