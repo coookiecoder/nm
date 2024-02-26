@@ -6,7 +6,7 @@
 /*   By: abareux <abareux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 13:41:16 by abareux           #+#    #+#             */
-/*   Updated: 2024/02/24 15:56:50 by abareux          ###   ########.fr       */
+/*   Updated: 2024/02/26 10:34:15 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,22 @@ int	ft_putptr(void *ptr)
 		digit--;
 	}
 	return (result);
+}
+
+int	ft_strncmp(const char *s1, const char *s2)
+{
+	size_t			cursor;
+	unsigned char	*c1;
+	unsigned char	*c2;
+
+	cursor = 0;
+	while (*(s1 + cursor) && *(s2 + cursor))
+	{
+		c1 = (unsigned char *)s1 + cursor;
+		c2 = (unsigned char *)s2 + cursor;
+		if (*c1 != *c2)
+			return (*c1 - *c2);
+		cursor++;
+	}
+	return (*c1 - *c2);
 }

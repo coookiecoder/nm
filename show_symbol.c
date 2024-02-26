@@ -6,7 +6,7 @@
 /*   By: abareux <abareux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 13:46:36 by abareux           #+#    #+#             */
-/*   Updated: 2024/02/24 17:27:18 by abareux          ###   ########.fr       */
+/*   Updated: 2024/02/26 10:56:41 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	show_symbol_64(void *file_data)
 		{
 			ft_putptr((void *) symtab->st_value);
 			write(1, " ", 1);
-			puttype_64(*symtab);
+			puttype_64(*symtab, *file_eheader, file_data);
 			write(1, " ", 1);
 			write(1, name, ft_strlen(name));
 			write(1, "\n", 1);
