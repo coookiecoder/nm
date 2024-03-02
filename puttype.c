@@ -6,7 +6,7 @@
 /*   By: abareux <abareux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 17:01:38 by abareux           #+#    #+#             */
-/*   Updated: 2024/03/02 12:37:45 by abareux          ###   ########.fr       */
+/*   Updated: 2024/03/02 12:46:05 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,4 @@ void	puttype_64(Elf64_Sym symbol, Elf64_Ehdr file_eheader, void *file_data)
 		write(1, "D", 1);
 	else if (symbol.st_shndx && bind == STB_LOCAL)
 		write(1, "d", 1);
-
-
-	else if (bind == STB_LOCAL)
-		write(1, "local", 5);
-	else if (bind == STB_GLOBAL)
-		write(1, "global", 6);
 }
